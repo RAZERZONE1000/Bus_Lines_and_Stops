@@ -1,0 +1,23 @@
+{% extends "autobuske_linije/base.html" %}
+
+{% block content %}
+
+
+<h3>DODAJ AUTOBUSKO STAJALIŠTE</h3>
+
+<div style="width:400px;">
+    <form method="post" >{% csrf_token %}
+		{{ form.as_p }}
+		<div style="float: left; width: 50px"> 
+			<input type='submit' class="button" value='Sačuvaj'/>
+		</div>
+	</form>
+    <div style="float: right; width: 250px"> 
+        <form action="/autobuske_linije/stajalista/">{% csrf_token %}
+			<input type='submit' class="button" value='Završi'/>
+		</form>
+    </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "autobuske_linije/base.html" %}
+
+{% block content %}
+
+
+<h3>AUTOBUSKE LINIJE</h3>
+
+<div class="tableFixHead">
+<table id="t1">
+	<thead>
+	<tr>
+		<th>ID</th>
+		<th>Autobuska linija</th>
+		<th>Opis</th>
+		<th>Autobuska stajališta</th>
+	</tr>
+	</thead>
+	{% for linija in object_list %}
+		<tr>
+			<td>{{ linija.id }}</td>
+			<td><a href="/autobuske_linije/{{ linija.id }}/">{{ linija.naziv }}</a></td>
+			<td>{{ linija.opis|default_if_none:"" }}</td>
+			<td>{{ linija.get_stajalista }}</td>
+		</tr>
+	{% endfor %}
+	</tr>
+</table>
+</div>
+<div style="position: absolute; right: 14.9%">
+	<form action="/autobuske_linije/linija_create/" method="post">{% csrf_token %} <!-- security thing -->
+		<input type="submit" class="button" value="Dodaj"/>
+	</form>
+</div>
+
+
+{% endblock %}

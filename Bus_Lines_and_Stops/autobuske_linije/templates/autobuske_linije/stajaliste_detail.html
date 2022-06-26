@@ -1,0 +1,24 @@
+{% extends "autobuske_linije/base.html" %}
+
+{% block content %}
+
+
+<h2>{{ object.naziv }}</h2>
+
+<p><strong>Ulica:</strong> {{ object.ulica }}</p>
+<p><strong>Koordinate:</strong> {{ object.get_coordinates|default_if_none:""  }}</p>
+<div style="width:400px;">
+	<form action="/autobuske_linije/stajalista/{{ object.id }}/update/">{% csrf_token %}
+		<div style="float: left; width: 50px"> 
+			<input type='submit' class="button" value='Ažuriraj'/>
+		</div>
+	</form>
+    <div style="float: right; width: 250px"> 
+        <form action="/autobuske_linije/stajalista/{{ object.id }}/delete/">{% csrf_token %}
+			<input type='submit' class="button" value='Izbriši'/>
+		</form>
+    </div>
+</div>
+
+
+{% endblock %}

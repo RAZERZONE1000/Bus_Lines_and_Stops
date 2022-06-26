@@ -1,0 +1,33 @@
+{% extends "autobuske_linije/base.html" %}
+{% block content %}
+
+
+
+<h2>Autobuske linije, grad Banja Luka</h2>
+
+<h3>Autobuske linije:</h3>
+<ul>	
+  {% for Linija in sve_linije %}
+	<li>{{Linija.id}}{{'.'}} {{ Linija.naziv }} </li>
+  {% endfor %}
+</ul>	
+
+<form action="/autobuske_linije/linija_create/" method="post" >{% csrf_token %} <!-- security thing -->
+  <input type="submit" value="Dodaj"/>
+</form>
+
+
+
+<h3>Autobuska stajališta:</h3>
+<ul>	
+  {% for Stajaliste in sva_stajalista %}
+	<li>{{ Stajaliste.naziv }}{{', Ulica:'}} {{Stajaliste.ulica}}</li>
+  {% endfor %}
+</ul>	
+
+<form action="/autobuske_linije/stajaliste_create/" method="post">{% csrf_token %}
+  <input type="submit" value="Dodaj"/>
+</form>
+
+
+{% endblock %}
